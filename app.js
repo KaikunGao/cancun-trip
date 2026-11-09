@@ -1,8 +1,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js?v=20261109e';
-import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109e';
+import { firebaseConfig } from './firebase-config.js?v=20261109f';
+import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109f';
 
 // 只考虑单程车程 1 小时以内的地方；更远的保留在 data.js 里但不在页面上出现
 const MAX_DRIVE = 60;
@@ -341,7 +341,30 @@ function cardHtml(s) {
 function renderCards() {
   const list = visibleSites();
   $('#cards').innerHTML = list.length ? list.map(cardHtml).join('') : `<div class="empty">这个筛选下没有景点了。</div>`;
-  $('#hotel-cards').innerHTML = SITES.filter(s => s.cat === 'rest').map(cardHtml).join('');
+  renderHotelTiles();
+}
+function tileHtml(s) {
+  const pd = plannedDays(s.id); const open = ui.open === s.id;
+  const inc = /^含|已含|含一次/.test(s.cost), extra = /加价|US\$|否则/.test(s.cost);
+  return `<article class="htile" id="card-${s.id}" style="--tone:${s.tone || 'var(--cat-rest)'}">
+    <div class="cover"><svg aria-hidden="true"><use href="#p-${s.icon || 'umbrella'}"/></svg>
+      <span class="kind">${s.meal === 'dinner' ? 'Dinner' : s.meal === 'lunch' ? 'Lunch' : 'Resort'}</span>
+      <div class="badges">${pd.map(d => `<span class="pbadge">${d.md}</span>`).join('')}</div></div>
+    <div class="body">
+      <h3>${esc(s.zh)}</h3>
+      <div class="when">${esc(s.when || '')}${s.hours ? ` · 约 ${fmtHours(s.hours)}` : ''}</div>
+      <div class="tagrow">${inc ? '<span class="tag good">含</span>' : ''}${extra ? '<span class="tag warn">加价</span>' : ''}${s.closedNote ? `<span class="tag warn">${esc(s.closedNote)}</span>` : ''}${s.verified === false ? '<span class="tag warn">待确认</span>' : ''}</div>
+      <div class="cost" title="${esc(s.cost)}">${esc(s.cost)}</div>
+      <div class="foot"><button class="add" data-act="pick" data-id="${s.id}" aria-expanded="${open}">${pd.length ? '调整' : '加入'}</button>${s.link ? `<a href="${s.link}" target="_blank" rel="noopener">官方页面 ↗</a>` : ''}</div>
+    </div>
+    ${open ? `<div class="daypick" role="group" aria-label="选择日期">${DAYS.map(d => { const on = plan.days[d.key].includes(s.id); const shut = s.closed && s.closed.includes(d.wd);
+      return `<button data-act="toggle" data-id="${s.id}" data-day="${d.key}" aria-pressed="${on}"><span class="d">${d.md}</span><span class="w">${d.dow}${d.tag ? ' · ' + d.tag : shut ? ' · 休' : ''}</span></button>`; }).join('')}</div>` : ''}
+    ${s.tips && s.tips.length ? `<details class="more"><summary>说明 & 贴士</summary><ul>${s.tips.map(x => `<li>${esc(x)}</li>`).join('')}</ul><p class="sub" style="margin-top:6px">${esc(s.blurb)}</p></details>` : ''}
+  </article>`;
+}
+function renderHotelTiles() {
+  const box = $('#hotel-tiles'); if (!box) return;
+  box.innerHTML = SITES.filter(s => s.cat === 'rest').map(tileHtml).join('');
 }
 
 // ---------- planner ----------
