@@ -9,9 +9,13 @@ Run:  python3 build.py
 """
 import re
 import sys
+import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+# GitHub Pages caches every file for 10 minutes; a version stamp on the script URLs makes a fresh
+# index.html pull fresh app.js and firebase-config.js instead of stale cached copies.
+STAMP = str(int(time.time()))
 SRC = HERE.parent / "riviera-maya-planner.html"
 html = SRC.read_text(encoding="utf-8")
 
@@ -47,10 +51,10 @@ assert "window.claude" not in core, "a Claude-only call survived the swap"
 imports = """import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js';
+import { firebaseConfig } from './firebase-config.js?v=STAMP';
 
 'use strict';
-"""
+""".replace("STAMP", STAMP)
 app_js = imports + "\n" + core.rstrip() + "\n"
 
 # --- body: swap the Claude share panel for the login / invite panel --------------------------
@@ -78,7 +82,7 @@ index = f"""<!doctype html>
 </head>
 <body>
 {body}
-<script type="module" src="./app.js"></script>
+<script type="module" src="./app.js?v={STAMP}"></script>
 </body>
 </html>
 """
