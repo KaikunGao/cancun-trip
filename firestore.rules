@@ -21,8 +21,14 @@ service cloud.firestore {
                     && request.resource.data.members.size() <= 10;
       allow delete: if signedIn() && resource.data.ownerUid == request.auth.uid;
 
+      // 每天一个文档：items、note、updatedAt、updatedBy
       match /days/{day} {
         allow read, write: if memberOf(tripId);
+      }
+      // 成员资料与在线心跳：email、name、color、lastSeen，只能写自己的
+      match /members/{uid} {
+        allow read: if memberOf(tripId);
+        allow write: if memberOf(tripId) && request.auth.uid == uid;
       }
       match /presence/{uid} {
         allow read: if memberOf(tripId);
