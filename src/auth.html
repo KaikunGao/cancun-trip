@@ -1,0 +1,15 @@
+      <div class="auth" id="auth">
+        <div class="auth-status" id="auth-status">正在连接…</div>
+        <form class="auth-form" id="login-form" hidden>
+          <input type="email" id="login-email" placeholder="你的邮箱" autocomplete="email" required>
+          <input type="password" id="login-pass" placeholder="密码（至少 6 位）" autocomplete="current-password" minlength="6" required>
+          <div class="auth-actions"><button class="btn primary" type="submit">登录</button><button class="btn" type="button" data-act="signup">注册新账号</button><button class="btn" type="button" data-act="reset-pass">忘记密码</button></div>
+          <p class="sub">第一次用先填邮箱和密码点「注册新账号」。登录后在这里输入朋友的邮箱邀请 TA，两人就能共同编辑。</p>
+        </form>
+        <div class="auth-in" id="auth-in" hidden>
+          <div class="members"><b>成员：</b><span id="members"></span></div>
+          <form class="invite-form" id="invite-form"><input type="email" id="invite-email" placeholder="朋友的邮箱" autocomplete="off" required><button class="btn primary" type="submit">邀请</button></form>
+          <p class="sub">对方用被邀请的邮箱注册并登录后，看到的就是这份行程，改动按天实时同步；两人同时改同一天时后保存的覆盖先保存的。</p>
+          <div class="auth-actions"><button class="btn" type="button" data-act="signout">退出登录</button></div>
+        </div>
+      </div>

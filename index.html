@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>里维埃拉玛雅行程本</title>
+<meta name="description" content="2026.11.20–25 普拉亚卡门之行：周边洞穴、天然井、遗址、海岛景点与酒店内活动，按天排进行程，两人共同编辑。">
+<meta name="theme-color" content="#0a3c42">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+  /* Layout: a deep-water header band, then a two-column working surface — catalog (map + filters + cards) on the left,
+     a sticky day planner on the right; on phones the two columns become a segmented switch. */
+  :root {
+    --bg: #f1f6f5;
+    --surface: #ffffff;
+    --surface-2: #e4eeec;
+    --fg: #10292f;
+    --muted: #5b7279;
+    --line: #cddcd9;
+    --accent: #0d8a86;
+    --accent-ink: #ffffff;
+    --accent-soft: #d4edea;
+    --sun: #c97a1f;
+    --sun-soft: #fbead3;
+    --jungle: #2e7a4e;
+    --jungle-soft: #dbeee1;
+    --danger: #b0433b;
+    --danger-soft: #f8e1df;
+    --band: #0a3c42;
+    --band-2: #0f6468;
+    --band-fg: #e9f6f4;
+    --sea: #cfe6e8;
+    --land: #eef2e9;
+    --cat-cave: #0d8a86;
+    --cat-ruin: #a3622a;
+    --cat-park: #7a4fb3;
+    --cat-sea: #2a74c2;
+    --cat-town: #bf355e;
+    --cat-nature: #3f8a3c;
+    --cat-rest: #6b7f85;
+    --shadow: 0 1px 2px rgba(16,41,47,.06), 0 8px 24px -12px rgba(16,41,47,.18);
+    --font-display: "Bricolage Grotesque", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", system-ui, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a191d; --surface: #112529; --surface-2: #172f34; --fg: #e3efed; --muted: #94abb1; --line: #244349;
+      --accent: #36c9c0; --accent-ink: #062320; --accent-soft: #123b3b; --sun: #f0a24a; --sun-soft: #3a2810;
+      --jungle: #63c48a; --jungle-soft: #12311f; --danger: #f08479; --danger-soft: #3d1c19;
+      --band: #061e22; --band-2: #0c3f43; --band-fg: #e9f6f4; --sea: #0d2a32; --land: #15282a;
+      --cat-cave: #3bd0c6; --cat-ruin: #e0995a; --cat-park: #b48ce8; --cat-sea: #6fb0f0; --cat-town: #f07ca0; --cat-nature: #7ccf78; --cat-rest: #9fb3b9;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a191d; --surface: #112529; --surface-2: #172f34; --fg: #e3efed; --muted: #94abb1; --line: #244349;
+    --accent: #36c9c0; --accent-ink: #062320; --accent-soft: #123b3b; --sun: #f0a24a; --sun-soft: #3a2810;
+    --jungle: #63c48a; --jungle-soft: #12311f; --danger: #f08479; --danger-soft: #3d1c19;
+    --band: #061e22; --band-2: #0c3f43; --band-fg: #e9f6f4; --sea: #0d2a32; --land: #15282a;
+    --cat-cave: #3bd0c6; --cat-ruin: #e0995a; --cat-park: #b48ce8; --cat-sea: #6fb0f0; --cat-town: #f07ca0; --cat-nature: #7ccf78; --cat-rest: #9fb3b9;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--band); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+  /* ---------- header band ---------- */
+  .hero { background: linear-gradient(160deg, var(--band) 0%, var(--band-2) 100%); color: var(--band-fg); }
+  .hero-inner { max-width: 1280px; margin: 0 auto; padding-block: 28px 26px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid; gap: 18px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+  .hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.1; letter-spacing: -.01em; }
+  .hero h1 small { display: block; font-size: .5em; font-weight: 600; opacity: .85; margin-top: 6px; letter-spacing: 0; }
+  .hotel { display: grid; gap: 6px; }
+  .hotel .name { font-weight: 600; font-size: 16px; }
+  .addr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; opacity: .92; }
+  .addr .text { font-family: var(--font-mono); font-size: 13px; }
+  .hero .pill-btn { border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); color: var(--band-fg); border-radius: 999px; padding: 4px 11px; font-size: 13px; }
+  .hero .pill-btn:hover { background: rgba(255,255,255,.16); }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .fact { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+  .fact b { font-family: var(--font-mono); font-weight: 500; }
+
+  /* ---------- mobile view switch ---------- */
+  .switch { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--bg); border-bottom: 1px solid var(--line);
+    padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--surface-2); border-radius: 10px; padding: 3px; max-width: 520px; margin: 0 auto; }
+  .seg button { border: 0; background: transparent; border-radius: 8px; padding: 8px; font-weight: 600; color: var(--muted); }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: var(--shadow); }
+  .seg .count { font-family: var(--font-mono); font-weight: 500; font-size: 12px; margin-left: 4px; color: var(--accent); }
+
+  /* ---------- layout ---------- */
+  .layout { max-width: 1280px; margin: 0 auto; padding-block: 22px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid; gap: 24px; }
+  .catalog, .planner { min-width: 0; }
+  @media (min-width: 1000px) {
+    .switch { display: none; }
+    .layout { grid-template-columns: minmax(0, 1fr) 400px; align-items: start; }
+    .planner { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); max-height: calc(100vh - 32px); overflow: auto; padding-right: 2px; }
+  }
+  @media (max-width: 999px) {
+    .layout.show-plan .catalog { display: none; }
+    .layout:not(.show-plan) .planner { display: none; }
+  }
+
+  /* ---------- catalog ---------- */
+  .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .section-title h2 { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+  .section-title .hint { color: var(--muted); font-size: 13px; }
+
+  .map-card, .hotel-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
+  .map-card summary, .hotel-card summary { list-style: none; cursor: pointer; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 600; }
+  .map-card summary::-webkit-details-marker, .hotel-card summary::-webkit-details-marker { display: none; }
+  .map-card summary .chev, .hotel-card summary .chev { color: var(--muted); font-size: 12px; transition: transform .2s; }
+  .map-card[open] summary .chev, .hotel-card[open] summary .chev { transform: rotate(180deg); }
+  .hotel-card { border-top: 3px solid var(--cat-rest); }
+  .hotel-card .lead { padding: 0 16px 12px; font-size: 13px; color: var(--muted); max-width: 70ch; }
+  .hotel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; padding: 0 16px 16px; }
+  .hblock { background: var(--bg); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+  .hblock h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .hblock ul { margin: 0; padding-left: 16px; font-size: 13px; display: grid; gap: 5px; }
+  .hblock li b { font-weight: 600; }
+  .hblock .sub { color: var(--muted); }
+  .hblock .ex { font-family: var(--font-mono); font-size: 11px; color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 5px; margin-left: 4px; white-space: nowrap; }
+  .map-wrap { background: var(--sea); position: relative; }
+  .map-wrap svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 10px 16px 12px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+  .map-legend span::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--c); margin-right: 5px; vertical-align: -1px; }
+  .m-land { fill: var(--land); stroke: var(--line); stroke-width: 1.2; }
+  .m-road { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; opacity: .55; }
+  .m-label { font-family: var(--font-body); font-size: 12px; fill: var(--muted); }
+  .m-label.big { font-weight: 600; fill: var(--fg); }
+  .m-dot { cursor: pointer; stroke: var(--surface); stroke-width: 1.5; transition: r .15s; }
+  .m-dot.planned { stroke: var(--fg); stroke-width: 2; }
+  .m-dot:hover, .m-dot.hot { r: 8; }
+  .m-hotel { fill: var(--sun); stroke: var(--fg); stroke-width: 1.5; }
+  .m-tip { font-family: var(--font-body); font-size: 12px; fill: var(--fg); font-weight: 600; pointer-events: none; }
+  .m-tip-bg { fill: var(--surface); stroke: var(--line); pointer-events: none; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: 13px; color: var(--fg); display: inline-flex; align-items: center; gap: 6px; }
+  .chip .sw { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--muted)); }
+  .chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .chip[aria-pressed="true"] .sw { outline: 2px solid var(--bg); }
+  .filters .spacer { flex: 1; }
+  .filters select { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 8px; padding: 6px 8px; }
+  .filters label { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 12px; display: grid; gap: 10px; position: relative; min-width: 0; border-top: 3px solid var(--c); }
+  .card.flash { animation: flash 1.2s ease-out; }
+  @keyframes flash { 0% { box-shadow: 0 0 0 4px var(--accent-soft); } 100% { box-shadow: none; } }
+  .card .top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+  .card .cat { font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--c); text-transform: uppercase; }
+  .card h3 { font-size: 17px; font-weight: 700; line-height: 1.3; }
+  .card .en { font-family: var(--font-display); font-weight: 500; color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .planned-badges { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; }
+  .pbadge { font-family: var(--font-mono); font-size: 11px; background: var(--accent-soft); color: var(--accent); border-radius: 6px; padding: 2px 6px; white-space: nowrap; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); }
+  .meta b { font-family: var(--font-mono); font-weight: 500; color: var(--fg); }
+  .blurb { margin: 0; font-size: 14px; }
+  .tagrow { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 11px; border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; color: var(--muted); }
+  .tag.warn { border-color: var(--sun); color: var(--sun); background: var(--sun-soft); }
+  .tag.good { border-color: var(--jungle); color: var(--jungle); background: var(--jungle-soft); }
+  .meal { padding: 0 14px 8px; font-size: 12px; color: var(--muted); }
+  .plan-sum { font-size: 13px; color: var(--muted); }
+  .peers { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .peer { display: inline-flex; align-items: center; gap: 5px; background: var(--jungle-soft); color: var(--jungle); border-radius: 999px; padding: 2px 8px 2px 3px; font-weight: 600; }
+  .peer img { width: 18px; height: 18px; border-radius: 50%; display: block; }
+  .share { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .share summary { list-style: none; cursor: pointer; padding: 9px 12px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-weight: 600; font-size: 13px; }
+  .share summary::-webkit-details-marker { display: none; }
+  .share summary .chev { color: var(--muted); font-size: 11px; transition: transform .2s; }
+  .share[open] summary .chev { transform: rotate(180deg); }
+  .share-body { padding: 0 12px 12px; font-size: 13px; display: grid; gap: 8px; }
+  .share-status { background: var(--accent-soft); color: var(--accent); border-radius: 8px; padding: 7px 10px; font-weight: 600; font-size: 12px; }
+  .share-body ol { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+  .share-body .sub { margin: 0; color: var(--muted); font-size: 12px; }
+  .day-head .who { font-family: var(--font-mono); font-size: 11px; color: var(--muted); flex-basis: 100%; }
+  .code-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 10px; }
+  .code-row { display: grid; gap: 6px; }
+  .code-row label { font-size: 12px; font-weight: 600; }
+  .code-row textarea { width: 100%; font: 12px/1.4 var(--font-mono); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; background: var(--bg); color: var(--fg); resize: vertical; word-break: break-all; }
+  .code-row .btn { justify-self: start; }
+  .code-panel .sub { margin: 0; font-size: 12px; color: var(--muted); }
+  details.more summary { cursor: pointer; font-size: 13px; color: var(--accent); font-weight: 600; list-style: none; }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::after { content: " ▾"; font-size: 11px; }
+  details.more[open] summary::after { content: " ▴"; }
+  details.more ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--fg); display: grid; gap: 4px; }
+  .card .foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 10px; }
+  .links { display: flex; gap: 12px; font-size: 13px; }
+  .add { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); border-radius: 8px; padding: 6px 12px; font-weight: 600; font-size: 13px; }
+  .add[aria-expanded="true"] { background: var(--accent-soft); color: var(--accent); }
+  .daypick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: var(--surface-2); border-radius: 10px; padding: 8px; }
+  .daypick button { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 4px; font-size: 12px; display: grid; gap: 1px; line-height: 1.25; }
+  .daypick button .d { font-family: var(--font-mono); font-weight: 500; font-size: 13px; }
+  .daypick button .w { color: var(--muted); font-size: 11px; }
+  .daypick button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .daypick button[aria-pressed="true"] .w { color: inherit; opacity: .85; }
+  .empty { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 30px 10px; }
+
+  /* ---------- planner ---------- */
+  .plan-head { display: grid; gap: 10px; margin-bottom: 12px; }
+  .plan-head h2 { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+  .sync { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .sync::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .sync.cloud::before { background: var(--jungle); }
+  .sync.cache::before { background: var(--sun); }
+  .plan-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 12px; font-size: 13px; font-weight: 600; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.danger { color: var(--danger); }
+  .confirm { background: var(--sun-soft); border: 1px solid var(--sun); border-radius: 10px; padding: 10px 12px; font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+  .confirm .acts { display: flex; gap: 6px; }
+  .toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 9px 14px; border-radius: 999px; font-size: 13px; box-shadow: var(--shadow); z-index: 20; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: calc(100vw - 32px); }
+  .toast.show { opacity: 1; }
+
+  .days { display: grid; gap: 12px; }
+  .day { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .day-head { display: flex; align-items: baseline; gap: 8px; padding: 10px 14px; background: var(--surface-2); flex-wrap: wrap; }
+  .day-head .date { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+  .day-head .dow { color: var(--muted); font-size: 13px; }
+  .day-head .daytag { font-size: 11px; background: var(--sun-soft); color: var(--sun); border-radius: 6px; padding: 1px 6px; font-weight: 600; }
+  .day-head .load { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .day-head .load.over { color: var(--danger); font-weight: 500; }
+  .day-note { font-size: 12px; color: var(--muted); padding: 6px 14px 0; }
+  .items { list-style: none; margin: 0; padding: 8px 10px; display: grid; gap: 6px; }
+  .item { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 8px 8px 8px 6px; border-radius: 10px; background: var(--bg); border-left: 3px solid var(--c); }
+  .item .num { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-align: center; }
+  .item .n { font-weight: 600; font-size: 14px; line-height: 1.3; }
+  .item .m { font-size: 12px; color: var(--muted); font-family: var(--font-mono); margin-top: 2px; }
+  .item .ctl { display: flex; gap: 2px; }
+  .item .ctl button { border: 0; background: transparent; width: 28px; height: 28px; border-radius: 7px; color: var(--muted); font-size: 14px; display: grid; place-items: center; }
+  .item .ctl button:hover { background: var(--surface-2); color: var(--fg); }
+  .item .ctl button:disabled { opacity: .3; cursor: default; }
+  .item .ctl button.x:hover { color: var(--danger); }
+  .day .blank { padding: 10px 14px 12px; font-size: 13px; color: var(--muted); }
+  .warns { padding: 0 14px 8px; display: grid; gap: 4px; }
+  .warn { font-size: 12px; color: var(--sun); display: flex; gap: 6px; align-items: flex-start; }
+  .warn.bad { color: var(--danger); }
+  .nearby { padding: 0 14px 10px; font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+  .nearby button { border: 1px dashed var(--line); background: transparent; border-radius: 6px; padding: 1px 7px; font-size: 12px; color: var(--accent); }
+  .nearby button:hover { border-color: var(--accent); }
+  .day textarea { width: 100%; border: 0; border-top: 1px dashed var(--line); background: transparent; padding: 8px 14px 10px; font: inherit; font-size: 13px; color: var(--fg); resize: vertical; min-height: 38px; display: block; }
+  .day textarea::placeholder { color: var(--muted); opacity: .8; }
+
+  .foot-note { max-width: 1280px; margin: 0 auto; padding-block: 0 36px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+  /* ---------- phone layout: bottom tab bar, horizontally scrolling chips, compact header, bigger tap targets ---------- */
+  @media (max-width: 999px) {
+    .switch { position: fixed; top: auto; bottom: 0; left: 0; right: 0; z-index: 30; border-bottom: 0; border-top: 1px solid var(--line); background: var(--surface);
+      padding-block: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -8px 24px -16px rgba(0,0,0,.35); }
+    .seg { max-width: none; }
+    .seg button { padding: 11px 8px; font-size: 15px; }
+    body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+    .toast { bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+    .layout { padding-block: 14px 24px; gap: 16px; }
+    .plan-actions { display: grid; grid-template-columns: 1fr 1fr; }
+    .plan-actions .btn { padding: 10px 8px; }
+    .item .ctl button { width: 34px; height: 34px; font-size: 15px; }
+    .daypick button { padding: 9px 4px; }
+    .add { padding: 9px 14px; }
+    .m-label { font-size: 19px; } .m-label.big { font-size: 21px; } .m-dot { r: 9; }
+  }
+  @media (max-width: 640px) {
+    .hero-inner { padding-block: 16px 14px; gap: 10px; }
+    .hero h1 { font-size: 25px; }
+    .hero h1 small { font-size: 12px; margin-top: 4px; }
+    .hotel .name { font-size: 14px; }
+    .addr .text { font-size: 12px; }
+    .eyebrow { font-size: 11px; }
+    .facts, .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+      padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    .facts::-webkit-scrollbar, .filters::-webkit-scrollbar { display: none; }
+    .fact, .chip { flex: 0 0 auto; white-space: nowrap; }
+    .chip { padding: 8px 13px; }
+    .filters { padding-bottom: 4px; margin-bottom: 10px; }
+    .filters .spacer { display: none; }
+    .filters select { flex: 0 0 auto; padding: 8px; }
+    .section-title { margin-bottom: 8px; }
+    .section-title .hint:last-child { display: none; }
+    .cards { gap: 10px; }
+    .card { padding: 12px 14px 10px; gap: 8px; }
+    .card h3 { font-size: 16px; }
+    .blurb { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card:has(details[open]) .blurb { display: block; -webkit-line-clamp: unset; }
+    .hotel-grid { padding: 0 12px 12px; gap: 10px; }
+    .hblock { padding: 10px 12px; }
+    .hotel-card .lead { padding: 0 12px 10px; }
+    .map-legend { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  /* ---------- public site: login / invite panel ---------- */
+  .auth { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 10px; }
+  .auth-status { font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 8px; padding: 7px 10px; }
+  .auth-form, .auth-in { display: grid; gap: 8px; }
+  .auth input { width: 100%; font: inherit; font-size: 14px; border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; background: var(--bg); color: var(--fg); min-width: 0; }
+  .auth-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+  .invite-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px; }
+  .members { font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .member { display: inline-flex; align-items: center; gap: 4px; background: var(--surface-2); border-radius: 999px; padding: 2px 8px; font-size: 12px; }
+  .member button { border: 0; background: transparent; color: var(--muted); font-size: 12px; padding: 0 2px; cursor: pointer; }
+  .member button:hover { color: var(--danger); }
+  .auth .sub { margin: 0; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">2026.11.20 周五 → 11.25 周三 · 5 晚 · 两人</div>
+      <h1>里维埃拉玛雅行程本<small>Riviera Maya · Playa del Carmen · Tulum · Chichén Itzá</small></h1>
+    </div>
+    <div class="hotel">
+      <div class="name">🏨 秘密墨西哥印象度假村 · Impression Moxche by Secrets</div>
+      <div class="addr">
+        <span class="text" id="addr">Carr. Cancún - Tulum km 294, Corasol, 77710 Playa del Carmen, Quintana Roo, Mexico</span>
+        <button class="pill-btn" data-act="copy-addr">复制地址</button>
+        <a class="pill-btn" href="https://www.google.com/maps/search/?api=1&query=Impression+Moxche+by+Secrets+Corasol+Playa+del+Carmen" target="_blank" rel="noopener">在地图打开 ↗</a>
+      </div>
+    </div>
+    <div class="facts">
+      <span class="fact">✈ 去程 11/20 AA1503 <b>ORD 08:24 → CUN 13:21</b></span>
+      <span class="fact">✈ 回程 11/25 AA1799 <b>CUN 16:00 → ORD 19:20</b></span>
+      <span class="fact">全包度假村 · <b>空着的日子 = 在酒店</b></span>
+      <span class="fact">入住 <b>15:00</b> · 退房 <b>11:00</b></span>
+      <span class="fact">坎昆机场 <b>≈ 45 分钟</b></span>
+      <span class="fact">普拉亚卡门市区 <b>≈ 15 分钟</b></span>
+      <span class="fact">图卢姆 <b>≈ 70 分钟</b></span>
+      <span class="fact">11 月下旬 <b>27–29 °C</b> · 海水 <b>28 °C</b> · 马尾藻少</span>
+      <span class="fact">天然井大多<b>只收现金 (MXN)</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="switch" aria-label="切换视图">
+  <div class="seg">
+    <button id="seg-sites" aria-pressed="true" data-act="view" data-view="sites">景点 · 酒店</button>
+    <button id="seg-plan" aria-pressed="false" data-act="view" data-view="plan">我们的行程<span class="count" id="seg-count"></span></button>
+  </div>
+</nav>
+
+<main class="layout" id="layout">
+  <section class="catalog">
+    <details class="hotel-card" open>
+      <summary><span>🏨 酒店里的玩法 · 餐厅 / 泳池 / SPA / 演出</span><span class="chev">▼</span></summary>
+      <p class="lead">Impression 是 Secrets Moxché 旁边的「酒店中的酒店」：有自己的屋顶泳池、海滩俱乐部和餐厅，同时可以用隔壁 Secrets 的全部设施（反过来不行）。专属管家 7:00–23:00 在 WhatsApp 上随叫随到，订餐厅、SPA、卡巴纳都找 TA。标 <span class="ex">含</span> 的已在房费里，标 <span class="ex">加价</span> 的要另付。想把这些排进某一天，在下面的卡片里选「酒店内」分类。</p>
+      <div class="hotel-grid">
+        <div class="hblock"><h3>🍽 晚餐（18:00–23:00，都要预订）</h3><ul>
+          <li><b>Teodoro</b> · Impression 专属，AAA 五钻，每晚换的七道式品鉴菜单配酒，正装。<span class="ex">加价约 US$ 250/人</span>，但住满 5 晚送一次，你们刚好够，到店就让管家锁位。</li>
+          <li><b>Suki</b> · 现代日料，有铁板烧桌和 Tanoshii omakase 吧台（omakase <span class="ex">加价</span>，住 5 晚管家有时可免）。</li>
+          <li><b>Ember</b> · 明火烤肉 & 烟熏，全酒店最抢手；高级部位和龙虾加价。</li>
+          <li><b>Dos Almas</b> · 墨西哥菜，6 座的七道式 taco 吧配龙舌兰 / 梅斯卡尔 <span class="ex">加价</span>；院子里每晚有街头小吃摊。</li>
+          <li><b>Bisou</b> · 法餐，正装严格执行（无袖、拖鞋进不去）。</li>
+          <li><b>Allora</b> 意大利菜（有酒窖包间）· <b>Bamboo</b> 东南亚 & 植物基（tiki 酒吧有现场音乐）· <b>Seasoul</b> 海鲜（周五阿根廷烤肉，有杂技晚餐秀）。</li>
+          <li class="sub">用 Hyatt Inclusive Collection 的 App 或让管家订。2025–26 年住客反映 19–20 点不订要等 1–2 小时，18 点左右到最稳。着装：男士长裤、有袖上衣、包头鞋或皮凉鞋。</li>
+        </ul></div>
+        <div class="hblock"><h3>☀️ 早餐 & 午餐</h3><ul>
+          <li><b>Seaside Beach Club</b> · Impression 专属海滩餐厅，早餐 7–11 点单（巴西莓碗、布里欧修法式吐司、甜点车），午餐 12–17，晚餐 18–23。</li>
+          <li><b>Cielo Rooftop</b> · 9 楼屋顶无边泳池旁，加州风带墨西哥味（龙虾、酸橘汁腌鱼、汉堡），午餐 11–17，酒吧到 20 点，有木吉他二重奏。</li>
+          <li><b>Seasoul</b> 午餐 11:30–17 · 住客公认最好吃的午餐。</li>
+          <li><b>Market Café</b> 自助早餐 7–11 / 午餐 12–16 · <b>Barefoot Grill</b> 泳池边快餐 · <b>Coco Café</b> 咖啡和 gelato 24 小时 · Secrets 的 <b>Observatory</b> 屋顶早餐也对 Impression 开放。</li>
+          <li><b>Cielo 屋顶早午餐</b> · 通常周末 10–16 点 <span class="ex">加价 US$ 200/人</span>，问管家当周有没有。</li>
+          <li class="sub">24 小时客房送餐用房里的 iPad；管家可以在套房里摆一顿白桌布晚餐。</li>
+        </ul></div>
+        <div class="hblock"><h3>🍸 酒吧 & 夜生活</h3><ul>
+          <li><b>Moxché 剧院</b> · 每晚约 21:00 一场马戏风格大秀（Quirky、Elements、Cirque Deliria、Rock 轮换），Impression 住客有专属座位和送酒服务。</li>
+          <li><b>Gypsy 地下酒吧</b> · 藏在药店后面，22:30–凌晨 1:00，每天的暗号问工作人员或看剧院秀结尾。</li>
+          <li><b>Dark Horse</b> 运动酒吧 17:00–1:00 · 高尔夫模拟器、台球、卡拉 OK、宾果、21 点。</li>
+          <li><b>Impression Lounge Bar</b> 大堂 10–22 点全天小食 · 屋顶泳池吧 10–18 · Secrets 侧 Sugar Reef / Mantaray 两个泳池吧、The Cove 海滩吧、深夜 taco 摊。</li>
+          <li><b>每周一次「Roads to Mexico」</b> 街头小吃之夜，住客口中的必去；沙滩无声迪斯科、烛光弦乐四重奏不定期。</li>
+          <li class="sub">「Mexican Spirits」龙舌兰品鉴（4 杯配小食）<span class="ex">加价</span>。</li>
+        </ul></div>
+        <div class="hblock"><h3>🏊 泳池 & 海滩</h3><ul>
+          <li><b>9 楼屋顶</b>（Impression 专属）· 一条长泳池 + 一个面海无边泳池、两个热水池、卡巴纳、送酒服务，约 10–20 点。日落朝西看丛林，是酒店最好的日落位。</li>
+          <li>第二栋 Impression 楼 3 楼还有一个带热水池的小泳池；Seaside 海滩俱乐部有小泳池。</li>
+          <li><b>Secrets 侧 7 个泳池</b> · 带沙滩的人工泻湖、十字形主泳池、两个泳池吧，以及 <b>3 个天然井风格的安静泳池</b>（吊床、藏起来的热水池）。泻湖躺椅要早去占。</li>
+          <li><b>海滩</b> · Impression 专属区有 Bali 床和躺椅，服务员约 10 点开始，不用预约（部分卡巴纳可能收费）。海滩偏窄、水浅、有小贩；11 月下旬马尾藻通常少。日出在海滩或朝海阳台，能看到科苏梅尔岛。</li>
+          <li class="sub">套房自带的 swim-out 泳池在阴面、冬天偏凉，想常用就要南向的房间。</li>
+        </ul></div>
+        <div class="hblock"><h3>💆 SPA & 运动</h3><ul>
+          <li><b>Secrets Spa by Pevonia</b> · 16 间理疗室，5 间带私人泡池的双人 VIP 房。<b>水疗循环</b>：桑拿、蒸汽、冲击水柱、反射步道、瀑布、冷热桶、水力按摩床。</li>
+          <li>Impression 住客<span class="ex">含</span>一次 20 分钟体验，并（据多方住客）每人一次水疗循环日票；其余按次付费。疗程 2023 年参考价：50 分钟按摩约 US$ 239、面部 135–249。4 小时内取消收费。</li>
+          <li>Temazcal 玛雅汗蒸仪式 <span class="ex">加价</span>。</li>
+          <li><b>运动</b> · 健身房、沙滩瑜伽 / 冥想 / 尊巴 / 水中有氧；1 个网球场、<b>屋顶 2 个匹克球场</b>（要预约）、壁球、射箭、沙排；可在 Corasol 社区骑车；Gran Coyote、El Camaleón 高尔夫有折扣。</li>
+        </ul></div>
+        <div class="hblock"><h3>🛶 水上 & 每日活动</h3><ul>
+          <li><span class="ex">含</span> 皮划艇、SUP、Hobie Cat 帆船、帆板、浮潜装备（个别资料标浮潜另收）；潜水、双体船、海钓 <span class="ex">加价</span>；摩托艇只有海滩小贩提供。</li>
+          <li>每日节目表在 App 里，管家早上也会 WhatsApp 发：西语课、调酒课、舞蹈课、问答 / 宾果 / 21 点、乒乓赛、泳池排球、水中单车、皮划艇和 SUP 团、骑行团。</li>
+          <li>Impression 不定期海滩 BBQ（龙虾、烤肉）；Impression Makers 名厨晚宴 <span class="ex">加价约 US$ 200</span>，11 月有没有问管家。</li>
+        </ul></div>
+        <div class="hblock"><h3>🎩 Impression 专属权益</h3><ul>
+          <li>专属管家 7–23 点 WhatsApp（订餐厅、SPA、卡巴纳、枕头菜单）；私密大堂办入住。</li>
+          <li>每天 3 次客房整理；洗衣熨烫 <span class="ex">含</span>；迷你吧每天补两次（啤酒、汽水、果汁、2–3 瓶葡萄酒、半瓶 Moët）；Nespresso；欢迎梅斯卡尔 / 龙舌兰；每日起泡酒和水果；每间套房阳台有泡澡浴缸。</li>
+          <li>可用 Secrets Moxché 全部餐厅、泳池、剧院和 Preferred 休息室；Secrets 住客不能进 Impression 区域。</li>
+          <li><b>机场接送不含</b>：Amstar 共乘约 US$ 98 两人往返，私家车约 US$ 135，出租车单程约 US$ 60，45 分钟。</li>
+        </ul></div>
+        <div class="hblock"><h3>📝 实用 & 踩坑</h3><ul>
+          <li><b>到店先做三件事</b>：让管家锁 Teodoro 的 5 晚免费位；订 Suki omakase / 铁板烧、Ember、Bisou；订水疗循环和匹克球。</li>
+          <li>小费已含，额外随意：一轮酒 US$ 1–5、管家每天 US$ 20–30 是常见做法。</li>
+          <li>入住时会有分时度假推销，直接拒绝即可。</li>
+          <li>住客抱怨集中在：晚餐位难订、海滩窄有小贩、餐酒普通（整瓶 US$ 75–100 升级）、团体包场偶尔关餐厅、屋顶风大水凉。</li>
+        </ul></div>
+      </div>
+    </details>
+
+    <details class="map-card" open>
+      <summary><span>🗺 周边示意图 · 点圆点跳到景点</span><span class="chev">▼</span></summary>
+      <div class="map-wrap" id="map"></div>
+      <div class="map-legend" id="legend"></div>
+    </details>
+
+    <div class="section-title">
+      <h2>周边景点 & 酒店内活动 <span class="hint" id="count-hint"></span></h2>
+      <span class="hint">车程均以酒店为起点 · 价格为 2026 年参考价（±20%）</span>
+    </div>
+
+    <div class="filters" id="filters"></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <aside class="planner" id="planner" aria-label="行程表">
+    <div class="plan-head">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
+        <h2>我们的行程</h2>
+        <span class="sync" id="sync">正在连接…</span>
+      </div>
+      <div class="plan-sum" id="plan-sum"></div>
+      <div class="peers" id="peers" hidden></div>
+      <div class="auth" id="auth">
+        <div class="auth-status" id="auth-status">正在连接…</div>
+        <form class="auth-form" id="login-form" hidden>
+          <input type="email" id="login-email" placeholder="你的邮箱" autocomplete="email" required>
+          <input type="password" id="login-pass" placeholder="密码（至少 6 位）" autocomplete="current-password" minlength="6" required>
+          <div class="auth-actions"><button class="btn primary" type="submit">登录</button><button class="btn" type="button" data-act="signup">注册新账号</button><button class="btn" type="button" data-act="reset-pass">忘记密码</button></div>
+          <p class="sub">第一次用先填邮箱和密码点「注册新账号」。登录后在这里输入朋友的邮箱邀请 TA，两人就能共同编辑。</p>
+        </form>
+        <div class="auth-in" id="auth-in" hidden>
+          <div class="members"><b>成员：</b><span id="members"></span></div>
+          <form class="invite-form" id="invite-form"><input type="email" id="invite-email" placeholder="朋友的邮箱" autocomplete="off" required><button class="btn primary" type="submit">邀请</button></form>
+          <p class="sub">对方用被邀请的邮箱注册并登录后，看到的就是这份行程，改动按天实时同步；两人同时改同一天时后保存的覆盖先保存的。</p>
+          <div class="auth-actions"><button class="btn" type="button" data-act="signout">退出登录</button></div>
+        </div>
+      </div>
+      <div class="plan-actions">
+        <button class="btn primary" data-act="suggest" data-preset="light">推荐：酒店为主</button>
+        <button class="btn" data-act="suggest" data-preset="full">推荐：多出去玩</button>
+        <button class="btn" data-act="copy-plan">复制为文字</button>
+        <button class="btn" data-act="code" aria-expanded="false">行程码</button>
+        <button class="btn danger" data-act="clear">清空</button>
+      </div>
+      <div id="confirm-slot"></div>
+      <div id="code-panel" class="code-panel" hidden>
+        <div class="code-row"><label for="code-out">我的行程码 · 发给对方，对方粘贴导入就同步了，不用登录</label><textarea id="code-out" readonly rows="2"></textarea><button class="btn" data-act="copy-code">复制行程码</button></div>
+        <div class="code-row"><label for="code-in">粘贴对方发来的行程码</label><textarea id="code-in" rows="2" placeholder="RM1-…"></textarea><button class="btn primary" data-act="import-code">导入</button></div>
+        <p class="sub">行程码包含六天的安排和备注。导入会覆盖这台设备上当前的安排。</p>
+      </div>
+    </div>
+    <div class="days" id="days"></div>
+  </aside>
+</main>
+
+<p class="foot-note">
+  价格与开放时间为 2026 年 11 月核对的参考信息，官网很少公示价格、天然井常年调价，出发前请以官网或现场为准。
+  11 月 22 日（周日）墨西哥居民免费参观遗址，图卢姆、科巴、奇琴伊察人会非常多，遗址尽量排在其他日子。
+  全包酒店的玩法：空着的日子就是酒店日，出门优先挑「半天往返」或「傍晚出发」的，餐费才不浪费。
+  改动会自动保存。用邮箱登录后，在行程表里输入朋友的邮箱发出邀请，对方注册登录即可共同编辑，改动按天实时同步。
+</p>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
