@@ -1,4 +1,4 @@
-# 里维埃拉玛雅行程本 · 公共网页版
+# 坎昆旅行行程本 · 公共网页版
 
 公开网址：<https://kaikungao.github.io/cancun-trip/>
 

@@ -1,8 +1,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js?v=20261109c';
-import { HOTEL, DAYS, CATS, SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109c';
+import { firebaseConfig } from './firebase-config.js?v=20261109d';
+import { HOTEL, DAYS, CATS, SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109d';
 
 'use strict';
 
@@ -152,7 +152,7 @@ async function openTrip() {
   for (const id of ids) { try { const t = await getDoc(doc(db, 'trips', id)); if (t.exists() && (t.data().members || []).includes(myEmail)) { found = t; break; } } catch (e) { /* not a member */ } }
   if (found) tripId = found.id;
   else {
-    const ref = await addDoc(collection(db, 'trips'), { name: '里维埃拉玛雅 2026.11.20–25', ownerUid: me.uid, ownerEmail: myEmail, members: [myEmail], createdAt: Date.now() });
+    const ref = await addDoc(collection(db, 'trips'), { name: '坎昆旅行 2026.11.20–25', ownerUid: me.uid, ownerEmail: myEmail, members: [myEmail], createdAt: Date.now() });
     await setDoc(invRef, { trips: arrayUnion(ref.id) }, { merge: true });
     tripId = ref.id;
   }
@@ -416,7 +416,7 @@ function renderMiniDays() {
 function renderAll() { renderCards(); renderPlanner(); refreshMapDots(); }
 
 function planText() {
-  const lines = ['里维埃拉玛雅行程 2026.11.20–11.25', 'Impression Moxché by Secrets · Carr. Cancún-Tulum km 294, Corasol, Playa del Carmen', ''];
+  const lines = ['坎昆旅行行程 2026.11.20–11.25', 'Impression Moxché by Secrets · Carr. Cancún-Tulum km 294, Corasol, Playa del Carmen', ''];
   for (const d of DAYS) {
     const ids = plan.days[d.key]; lines.push(`${d.md} ${d.dow}${d.tag ? '（' + d.tag + '）' : ''}`);
     if (!ids.length) lines.push('  （在酒店）');
