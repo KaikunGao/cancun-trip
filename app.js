@@ -1,8 +1,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js?v=20261109f';
-import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109f';
+import { firebaseConfig } from './firebase-config.js?v=20261109g';
+import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109g';
 
 // 只考虑单程车程 1 小时以内的地方；更远的保留在 data.js 里但不在页面上出现
 const MAX_DRIVE = 60;
@@ -353,7 +353,7 @@ function tileHtml(s) {
     <div class="body">
       <h3>${esc(s.zh)}</h3>
       <div class="when">${esc(s.when || '')}${s.hours ? ` · 约 ${fmtHours(s.hours)}` : ''}</div>
-      <div class="tagrow">${inc ? '<span class="tag good">含</span>' : ''}${extra ? '<span class="tag warn">加价</span>' : ''}${s.closedNote ? `<span class="tag warn">${esc(s.closedNote)}</span>` : ''}${s.verified === false ? '<span class="tag warn">待确认</span>' : ''}</div>
+      <div class="tagrow">${inc ? '<span class="tag good">含</span>' : ''}${extra ? '<span class="tag warn">加价</span>' : ''}${s.closedNote ? `<span class="tag warn">${esc(s.closedNote)}</span>` : ''}${s.verified === false ? '<span class="tag warn">官网未列 · 住客反映</span>' : s.verified === 'partial' ? '<span class="tag">部分细节待确认</span>' : ''}</div>
       <div class="cost" title="${esc(s.cost)}">${esc(s.cost)}</div>
       <div class="foot"><button class="add" data-act="pick" data-id="${s.id}" aria-expanded="${open}">${pd.length ? '调整' : '加入'}</button>${s.link ? `<a href="${s.link}" target="_blank" rel="noopener">官方页面 ↗</a>` : ''}</div>
     </div>
