@@ -1,8 +1,12 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js?v=20261109d';
-import { HOTEL, DAYS, CATS, SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109d';
+import { firebaseConfig } from './firebase-config.js?v=20261109e';
+import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109e';
+
+// 只考虑单程车程 1 小时以内的地方；更远的保留在 data.js 里但不在页面上出现
+const MAX_DRIVE = 60;
+const SITES = ALL_SITES.filter(s => s.drive <= MAX_DRIVE);
 
 'use strict';
 
@@ -261,7 +265,7 @@ function renderNameBanner() {
 }
 
 // ---------- map ----------
-const B = { lonMin: -88.75, lonMax: -86.55, latMin: 19.95, latMax: 21.70 }, MW = 820, MH = 690;
+const B = { lonMin: -87.9, lonMax: -86.55, latMin: 20.1, latMax: 21.2 }, MW = 900, MH = 780;
 const P = (lat, lon) => [((lon - B.lonMin) / (B.lonMax - B.lonMin) * MW).toFixed(1), ((B.latMax - lat) / (B.latMax - B.latMin) * MH).toFixed(1)];
 const poly = pts => pts.map(p => P(p[0], p[1]).join(',')).join(' ');
 function renderMap() {
@@ -272,7 +276,7 @@ function renderMap() {
   const mujeres = [[21.27, -86.75], [21.20, -86.72]];
   const road180 = [[21.05, -86.85], [20.98, -87.20], [20.90, -87.60], [20.78, -88.00], [20.72, -88.20], [20.69, -88.45], [20.68, -88.57]];
   const roadCoba = [[20.21, -87.46], [20.35, -87.60], [20.49, -87.73], [20.60, -87.95], [20.69, -88.20]];
-  const labels = [[21.16, -86.85, '坎昆', 1], [20.63, -87.12, '普拉亚卡门', 1], [20.21, -87.50, '图卢姆', 1], [20.49, -87.80, '科巴', 0], [20.69, -88.26, '巴利亚多利德', 0], [20.68, -88.62, '奇琴伊察', 0], [20.42, -86.80, '科苏梅尔', 0], [21.62, -87.66, '霍尔博克斯', 0], [21.25, -86.68, '女人岛', 0], [20.85, -86.84, '莫雷洛斯港', 0]];
+  const labels = [[21.16, -86.85, '坎昆', 1], [20.63, -87.12, '普拉亚卡门', 1], [20.21, -87.50, '图卢姆（1 小时以外）', 0], [20.42, -86.80, '科苏梅尔', 0], [20.85, -86.84, '莫雷洛斯港', 0], [20.40, -87.36, '阿库马尔', 0], [20.50, -87.28, '阿文图拉斯港', 0]];
   let svg = `<svg viewBox="0 0 ${MW} ${MH}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="周边景点示意图">`;
   svg += `<polygon class="m-land" points="${poly([...coastN, ...coastE])}"/><polygon class="m-land" points="${poly(cozumel)}"/>`;
   svg += `<polyline class="m-land" points="${poly(holbox)}" stroke-width="5" stroke-linecap="round"/><polyline class="m-land" points="${poly(mujeres)}" stroke-width="4" stroke-linecap="round"/>`;
@@ -295,7 +299,7 @@ function refreshMapDots() { $$('.m-dot').forEach(d => d.classList.toggle('planne
 
 // ---------- site cards ----------
 function renderFilters() {
-  const chips = [['all', '全部', null], ...Object.entries(CATS).filter(([k]) => k !== 'rest').map(([k, c]) => [k, c.label, c.color])];
+  const chips = [['all', '全部', null], ...Object.entries(CATS).filter(([k]) => k !== 'rest' && SITES.some(s => s.cat === k)).map(([k, c]) => [k, c.label, c.color])];
   $('#filters').innerHTML = chips.map(([k, label, color]) => `<button class="chip" data-act="cat" data-cat="${k}" aria-pressed="${ui.cat === k}" ${color ? `style="--c:${color}"` : ''}>${color ? '<span class="sw"></span>' : ''}${label}</button>`).join('')
     + `<span class="spacer"></span>
        <button class="chip" data-act="flag" data-flag="half" aria-pressed="${ui.half}">半天可回酒店</button>
@@ -392,7 +396,7 @@ function renderPlanner() {
       ${d.note ? `<div class="day-note">${esc(d.note)}</div>` : ''}
       ${ids.length ? `<ol class="items">${ids.map((id, i) => { const s = byId[id]; return `<li class="item" style="--c:${CATS[s.cat].color}">
           <span class="num">${i + 1}</span>
-          <div style="min-width:0"><div class="n">${esc(s.zh)}</div><div class="m">${fmtDrive(s.drive)} · ${fmtHours(s.hours)}</div></div>
+          <div style="min-width:0"><div class="n">${esc(s.zh)}</div><div class="m">${fmtDrive(s.drive)} · ${fmtHours(s.hours)}${s.drive > MAX_DRIVE ? ' · <span style="color:var(--sun)">超过 1 小时</span>' : ''}</div></div>
           <div class="ctl"><button data-act="move" data-day="${d.key}" data-i="${i}" data-dir="-1" ${i === 0 ? 'disabled' : ''} aria-label="上移">↑</button><button data-act="move" data-day="${d.key}" data-i="${i}" data-dir="1" ${i === ids.length - 1 ? 'disabled' : ''} aria-label="下移">↓</button><button class="x" data-act="remove" data-day="${d.key}" data-id="${id}" aria-label="移除">✕</button></div>
         </li>`; }).join('')}</ol>`
         : `<div class="blank">${blankText(d)}</div>`}
