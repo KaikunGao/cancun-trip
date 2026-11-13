@@ -7,7 +7,7 @@
 <meta name="description" content="2026.11.20–25 普拉亚卡门之行：周边洞穴、天然井、遗址、海岛景点与酒店内活动，按天排进行程，两人共同编辑。">
 <meta name="theme-color" content="#1fa9a6">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="./styles.css?v=20261109g">
+<link rel="stylesheet" href="./styles.css?v=20261112a">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -127,13 +127,13 @@
       <header class="page-head">
         <div><h1>周边景点</h1><p class="lede">只列出单程车程 1 小时以内的地方，车程以酒店为起点，价格为 2026 年参考价（±20%）。点「加入行程」选一天。</p></div>
       </header>
-      <details class="map-card">
+      <div class="filters" id="filters"></div>
+      <div class="cards" id="cards"></div>
+      <details class="map-card" open>
         <summary><span>示意图 · 点圆点跳到景点</span><span class="chev">▾</span></summary>
         <div class="map-wrap" id="map"></div>
         <div class="map-legend" id="legend"></div>
       </details>
-      <div class="filters" id="filters"></div>
-      <div class="cards" id="cards"></div>
     </section>
 
     <!-- 酒店 -->
@@ -233,6 +233,6 @@
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="./app.js?v=20261109g"></script>
+<script type="module" src="./app.js?v=20261112a"></script>
 </body>
 </html>

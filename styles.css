@@ -133,7 +133,7 @@ p { margin: 0; }
 .filters select { font: inherit; font-size: 13px; font-weight: 600; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 7px 12px; }
 
 /* ---------- map ---------- */
-.map-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+.map-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 24px; }
 .map-card summary { list-style: none; cursor: pointer; padding: 13px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; }
 .map-card summary::-webkit-details-marker { display: none; }
 .map-card summary .chev { color: var(--muted); transition: transform .2s; }

@@ -1,8 +1,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js?v=20261109g';
-import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261109g';
+import { firebaseConfig } from './firebase-config.js?v=20261112a';
+import { HOTEL, DAYS, CATS, SITES as ALL_SITES, SUGGEST, PRESET_NAME, byId } from './data.js?v=20261112a';
 
 // 只考虑单程车程 1 小时以内的地方；更远的保留在 data.js 里但不在页面上出现
 const MAX_DRIVE = 60;
@@ -15,7 +15,7 @@ const $ = sel => document.querySelector(sel);
 const $$ = sel => [...document.querySelectorAll(sel)];
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const fmtDrive = m0 => { const m = Math.round(m0 / 5) * 5; return m === 0 ? '在酒店' : m < 60 ? `${m} 分钟` : `${Math.floor(m / 60)} 小时${m % 60 ? ' ' + (m % 60) + ' 分' : ''}`; };
-const fmtHours = h => Number.isInteger(h) ? `${h} 小时` : `${h} 小时`.replace('.5', '½');
+const fmtHours = h => `${h} 小时`;
 const km = (a, b) => { const R = 6371, dLat = (b.lat - a.lat) * Math.PI / 180, dLon = (b.lon - a.lon) * Math.PI / 180;
   const s = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * Math.PI / 180) * Math.cos(b.lat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(s)); };
@@ -549,5 +549,4 @@ document.addEventListener('click', e => {
 });
 
 // ---------- boot ----------
-if (window.matchMedia && !matchMedia('(max-width: 999px)').matches) $('.map-card').setAttribute('open', '');
 renderMap(); renderFilters(); renderAll(); renderSideFoot(); renderPeople(); showView(); connectCloud();
